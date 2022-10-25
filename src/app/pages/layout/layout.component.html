@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">EuRecomendo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+    <div class="user-info">
+      <div>
+        <p class="text-white mb-0">{{currentUser.name}}</p>
+        <p class="text-muted mb-0">{{currentUser.email}}</p>
+      </div>
+      <img [src]="currentUser.picture_url">
+    </div>
+  </div>
+</nav>
+
+<div class="container py-4">
+  <router-outlet></router-outlet>
+</div>

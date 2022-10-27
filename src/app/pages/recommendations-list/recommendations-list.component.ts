@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Category } from 'src/app/models/category';
 import { Recommendation } from 'src/app/models/recommendation';
 import { ApiService } from 'src/app/services/api.service';
@@ -15,7 +16,10 @@ export class RecommendationsListComponent implements OnInit {
   public categories: Category[] = [];
   public currentCategory: number = this.ALL_RECOMMENDATIONS;
 
-  constructor(private apiService: ApiService) { }
+  constructor(
+    private apiService: ApiService,
+    private router: Router
+  ) { }
 
   public ngOnInit(): void {
     this.loadCategories();
@@ -25,6 +29,11 @@ export class RecommendationsListComponent implements OnInit {
   public filter(categoryId: number): void {
     this.currentCategory = categoryId;
     this.loadRecommendations(categoryId);
+  }
+
+  public showDetails(recommendation: Recommendation) {
+    // this.router.navigateByUrl(`recomendacao/${recommendation.id}`)
+    this.router.navigate(['recomendacao', recommendation.id])
   }
 
   private async loadCategories(): Promise<void> {

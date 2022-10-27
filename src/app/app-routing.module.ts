@@ -1,3 +1,4 @@
+import { RecommendationDetailsComponent } from './pages/recommendation-details/recommendation-details.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/guards/auth.guard';
@@ -10,7 +11,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registre-se', component: RegisterComponent },
   { path: '', component: LayoutComponent, canActivate: [ AuthGuard ], children: [
-    { path: '', component: RecommendationsListComponent }
+    { path: '', component: RecommendationsListComponent },
+    { path: 'recomendacao/:id', component: RecommendationDetailsComponent }
   ]}
 ];
 

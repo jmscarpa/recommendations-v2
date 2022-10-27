@@ -1,0 +1,47 @@
+<a [routerLink]="['']" class="d-block text-muted mb-3">Voltar</a>
+
+<div class="row">
+  <div class="col-12 col-md-4">
+    <div class="card">
+      <img [src]="recommendation.image_url" class="card-img-top">
+      <div class="card-body">
+        <span class="badge rounded-pill bg-dark mb-3 text-bg-primary">{{recommendation.category.name}}</span>
+        <h5 class="card-title">{{recommendation.name}}</h5>
+        <p class="card-text">{{recommendation.description}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-8">
+    <div class="card rounded shadow">
+      <div class="card-body" *ngIf="recommendation.comments.length;else emptyState">
+        <h5 class="border-bottom pb-2 mb-0">Comentários</h5>
+        <div class="d-flex align-items-start text-muted pt-3" *ngFor="let comment of recommendation.comments">
+          <img [src]="comment.user.picture_url" class="user-picture me-3">
+
+          <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+            <strong class="d-block text-gray-dark">{{comment.user.name}}</strong>
+            <p class="mb-0">{{comment.content}}</p>
+            <time class="comment-date d-block">{{comment.created_at | date:'medium' }}</time>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-12 col-md-10">
+            <input [(ngModel)]="newComment" type="text" class="form-control" placeholder="Digite seu comentario">
+          </div>
+          <div class="col-12 col-md-2">
+            <button class="btn btn-dark w-100" [disabled]="!newComment" (click)="sendComment()">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #emptyState>
+  <app-empty-state
+    title="Nenhum Comentário"
+    message="Seja o primeiro a deixar um comentário sobre esta recomendação"
+  ></app-empty-state>
+</ng-template>

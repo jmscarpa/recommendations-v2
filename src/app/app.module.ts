@@ -12,6 +12,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { RecommendationsListComponent } from './pages/recommendations-list/recommendations-list.component';
 import { EmptyStateComponent } from './componentes/empty-state/empty-state.component';
+import { RecommendationDetailsComponent } from './pages/recommendation-details/recommendation-details.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { EmptyStateComponent } from './componentes/empty-state/empty-state.compo
     RegisterComponent,
     LayoutComponent,
     RecommendationsListComponent,
-    EmptyStateComponent
+    EmptyStateComponent,
+    RecommendationDetailsComponent
   ],
   imports: [
     BrowserModule,

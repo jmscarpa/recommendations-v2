@@ -4,6 +4,13 @@ body {
   background-color: #eeeeee;
 }
 
+.user-picture {
+  width: 48px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 .rectangle {
   aspect-ratio: 1/1;
   object-fit: cover;

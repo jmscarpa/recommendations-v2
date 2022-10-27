@@ -14,7 +14,7 @@
 
 <div class="row align-items-stretch">
   <div class="col-12 col-md-3 mb-4" *ngFor="let recommendation of recommendations">
-    <div class="card h-100">
+    <div class="card h-100" (click)="showDetails(recommendation)" >
       <img [src]="recommendation.image_url" class="card-img-top rectangle">
       <div class="card-body">
         <span class="badge rounded-pill text-bg-primary">{{recommendation.category.name}}</span>

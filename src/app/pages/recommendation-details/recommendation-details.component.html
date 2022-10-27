@@ -1,6 +1,6 @@
 <a [routerLink]="['']" class="d-block text-muted mb-3">Voltar</a>
 
-<div class="row">
+<div class="row" *ngIf="!loading;else loader">
   <div class="col-12 col-md-4">
     <div class="card">
       <img [src]="recommendation.image_url" class="card-img-top">
@@ -24,6 +24,7 @@
             <time class="comment-date d-block">{{comment.created_at | date:'medium' }}</time>
           </div>
         </div>
+        <app-loader *ngIf="commentsLoading"></app-loader>
       </div>
       <div class="card-footer">
         <div class="row">
@@ -38,6 +39,10 @@
     </div>
   </div>
 </div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
 
 <ng-template #emptyState>
   <app-empty-state

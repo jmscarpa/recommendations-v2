@@ -1,0 +1,39 @@
+<div class="card border-0">
+  <h2 class="card-header py-4 bg-white">{{ isNew ? "Nova" : "Alterar"}} recomendação</h2>
+  <div class="card-body p-4">
+
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col-12 col-md-3" *ngIf="form.value.image_url">
+          <img [src]="form.value.image_url" class="rounded w-100 mt-3">
+        </div>
+        <div class="col-12 col-md">
+          <div class="mb-3">
+            <label>Nome</label>
+            <input type="text" formControlName="name" placeholder="Digite o nome da recomendação" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label>Link da Imagem</label>
+            <input type="text" formControlName="image_url" placeholder="Digite o link da imagem" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label>Categoria</label>
+            <select formControlName="category_id" type="text" class="form-control">
+              <option value="{{category.id}}" *ngFor="let category of categories">{{category.name}}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label>Descrição</label>
+            <textarea formControlName="description" rows="5" placeholder="Digite o nome da recomendação"
+              class="form-control">
+              </textarea>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-outline-secondary me-2 w-25" (click)="cancel()">Cancelar</button>
+        <button class="btn btn-dark me-2 w-25" (click)="save()">{{isNew ? "Salvar" : "Atualizar"}}</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -14,11 +14,15 @@ export class ApiService {
   public get<T>(path: string, params: object = {}): Promise<T> {
     return this.parseRequest<T>(this.httpClient.get<T>(`${environment.apiUrl}${path}`, this.getOptions(params)))
   }
-  
+
   public post<T>(path: string, body: object): Promise<T> {
     return this.parseRequest<T>(this.httpClient.post<T>(`${environment.apiUrl}${path}`, body, this.getOptions({})))
   }
-  
+
+  public patch<T>(path: string, body: object): Promise<T> {
+    return this.parseRequest<T>(this.httpClient.patch<T>(`${environment.apiUrl}${path}`, body, this.getOptions({})))
+  }
+
   public delete<T>(path: string): Promise<T> {
     return this.parseRequest<T>(this.httpClient.delete<T>(`${environment.apiUrl}${path}`, this.getOptions({})))
   }
@@ -36,7 +40,7 @@ export class ApiService {
       'Content-Type': 'application/json',
       'Authorization': ''
     };
-    
+
     if (this.authService.isLoggedIn()) {
       headers['Authorization'] = this.authService.currentUser.api_token
     }

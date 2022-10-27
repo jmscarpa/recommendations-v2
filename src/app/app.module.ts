@@ -13,6 +13,9 @@ import { LayoutComponent } from './pages/layout/layout.component';
 import { RecommendationsListComponent } from './pages/recommendations-list/recommendations-list.component';
 import { EmptyStateComponent } from './componentes/empty-state/empty-state.component';
 import { RecommendationDetailsComponent } from './pages/recommendation-details/recommendation-details.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { FormDialogComponent } from './components/form-dialog/form-dialog.component';
+import { RecommendationFormComponent } from './components/recommendation-form/recommendation-form.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { RecommendationDetailsComponent } from './pages/recommendation-details/r
     LayoutComponent,
     RecommendationsListComponent,
     EmptyStateComponent,
-    RecommendationDetailsComponent
+    RecommendationDetailsComponent,
+    LoaderComponent,
+    FormDialogComponent,
+    RecommendationFormComponent
   ],
   imports: [
     BrowserModule,

@@ -18,19 +18,31 @@ export class RecommendationDetailsComponent implements OnInit {
 
   public recommendation!: Recommendation;
   public newComment: string = '';
+  public loading: boolean = true;
+  public commentsLoading: boolean = false;
+
+  public id:number = this.route.snapshot.params['id'];
 
   public ngOnInit(): void {
-    let id:number = this.route.snapshot.params['id'];
-    this.apiService.get<Recommendation>(`recommendations/${id}`).then( data => {
+    this.loadRecommendation()
+  }
+
+  public loadRecommendation() {
+    this.apiService.get<Recommendation>(`recommendations/${this.id}`).then( data => {
       this.recommendation = data;
+    }).finally( () => {
+      this.loading = false;
     })
   }
 
   public sendComment(): void {
+    this.commentsLoading = true;
     let url: string = `recommendations/${this.recommendation.id}/comments`
-    this.apiService.post<Comment>(url, { content: this.newComment }).then( data =>{
-      this.recommendation.comments.push(data)
+    this.apiService.post<Comment>(url, { content: this.newComment }).then( () =>{
+      this.loadRecommendation()
       this.newComment = ''
+    }).finally( () => {
+      this.commentsLoading = false;
     })
   }
 

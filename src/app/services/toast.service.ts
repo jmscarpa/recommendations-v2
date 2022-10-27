@@ -4,14 +4,15 @@ export interface ToastInfo {
   header: string;
   body: string;
   delay?: number;
+  classname?: string;
 }
 
 @Injectable({ providedIn: 'root' })
 export class AppToastService {
   public toasts: ToastInfo[] = [];
 
-  show(header: string, body: string) {
-    this.toasts.push({ header, body });
+  show(header: string, body: string, classname?: string) {
+    this.toasts.push({ header, body, classname });
   }
 
   remove(toast: ToastInfo) {

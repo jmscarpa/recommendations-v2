@@ -10,6 +10,7 @@
         <p class="card-text">{{recommendation.description}}</p>
       </div>
     </div>
+    <button (click)="showEditDialog()" class="btn btn-dark mt-3 w-100">Editar Recomendação</button>
   </div>
   <div class="col-12 col-md-8">
     <div class="card rounded shadow">
@@ -50,3 +51,10 @@
     message="Seja o primeiro a deixar um comentário sobre esta recomendação"
   ></app-empty-state>
 </ng-template>
+
+<app-form-dialog
+  [recommendation]="recommendation"
+  [showDialog]="showDialog"
+  (onCloseDialog)="onCloseDialog()"
+  *ngIf="recommendation"
+  ></app-form-dialog>

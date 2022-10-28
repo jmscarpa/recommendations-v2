@@ -20,6 +20,7 @@ export class RecommendationDetailsComponent implements OnInit {
   public newComment: string = '';
   public loading: boolean = true;
   public commentsLoading: boolean = false;
+  public showDialog: boolean = false;
 
   public id:number = this.route.snapshot.params['id'];
 
@@ -33,6 +34,16 @@ export class RecommendationDetailsComponent implements OnInit {
     }).finally( () => {
       this.loading = false;
     })
+  }
+
+  public showEditDialog() {
+    this.showDialog = true
+  }
+
+  public onCloseDialog() {
+    this.showDialog = false;
+    this.loading = true;
+    this.loadRecommendation()
   }
 
   public sendComment(): void {

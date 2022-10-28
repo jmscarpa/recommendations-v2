@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,7 +38,8 @@ import { RecommendationFormComponent } from './components/recommendation-form/re
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    NgxSkeletonLoaderModule.forRoot({ animation: 'pulse', loadingText: 'This item is actually loading...' }),
   ],
   providers: [],
   bootstrap: [AppComponent]

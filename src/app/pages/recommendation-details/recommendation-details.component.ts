@@ -29,6 +29,7 @@ export class RecommendationDetailsComponent implements OnInit {
   }
 
   public loadRecommendation() {
+    this.loading = true;
     this.apiService.get<Recommendation>(`recommendations/${this.id}`).then( data => {
       this.recommendation = data;
     }).finally( () => {
@@ -40,10 +41,9 @@ export class RecommendationDetailsComponent implements OnInit {
     this.showDialog = true
   }
 
-  public onCloseDialog() {
+  public onCloseDialog(reload: boolean) {
     this.showDialog = false;
-    this.loading = true;
-    this.loadRecommendation()
+    if (reload) this.loadRecommendation()
   }
 
   public sendComment(): void {

@@ -10,7 +10,7 @@ export class FormDialogComponent implements OnInit, OnChanges {
 
   @Input() public recommendation?: Recommendation;
   @Input() public showDialog: boolean = false;
-  @Output() public onCloseDialog: EventEmitter<void> = new EventEmitter<void>();
+  @Output() public onCloseDialog: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @ViewChild('dialog')
   public dialog!: ElementRef<HTMLDialogElement>;
@@ -21,14 +21,20 @@ export class FormDialogComponent implements OnInit, OnChanges {
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
+    let dialog = this.dialog.nativeElement
+
+    dialog.addEventListener('close', () => {
+      this.onAfterSave(false)
+    })
+
     if (this.showDialog) {
-      this.dialog.nativeElement.showModal()
+      dialog.showModal()
     }
   }
 
-  public onAfterSave(): void {
+  public onAfterSave(reload: boolean): void {
     this.dialog.nativeElement.close()
-    this.onCloseDialog.emit()
+    this.onCloseDialog.emit(reload)
   }
 
 

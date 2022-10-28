@@ -16,7 +16,7 @@ import { Category } from '../../models/category';
 })
 export class RecommendationFormComponent implements OnInit {
   @Input() recommendation?: Recommendation;
-  @Output() public afterSave: EventEmitter<number> = new EventEmitter<number>();
+  @Output() public afterSave: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private apiService: ApiService,
@@ -64,7 +64,7 @@ export class RecommendationFormComponent implements OnInit {
     if (this.form.valid) {
       this.apiService[method](url, this.form.value)
         .then(() => {
-          this.afterSave.emit(this.form.value.category_id);
+          this.afterSave.emit(true);
         })
         .catch((response) => {
           this.toastService.show('Atenção', response.error.error, 'bg-danger text-light')
@@ -75,7 +75,7 @@ export class RecommendationFormComponent implements OnInit {
   }
 
   public cancel(): void {
-    this.afterSave.emit()
+    this.afterSave.emit(false)
   }
 
   private loadCategories(): void {

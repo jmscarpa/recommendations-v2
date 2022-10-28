@@ -1,6 +1,7 @@
 dialog {
   border: none;
   width: 50vh;
+  min-width: 640px;
 }
 
 dialog::backdrop {

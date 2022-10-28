@@ -46,11 +46,12 @@ export class RecommendationDetailsComponent implements OnInit {
     if (reload) this.loadRecommendation()
   }
 
-  public sendComment(): void {
+  public async sendComment(): Promise<void> {
     this.commentsLoading = true;
     let url: string = `recommendations/${this.recommendation.id}/comments`
-    this.apiService.post<Comment>(url, { content: this.newComment }).then( () =>{
-      this.loadRecommendation()
+    this.apiService.post<Comment>(url, { content: this.newComment }).then( async () =>{
+      let data = await this.apiService.get<Recommendation>(`recommendations/${this.id}`)
+      this.recommendation.comments = data.comments
       this.newComment = ''
     }).finally( () => {
       this.commentsLoading = false;
